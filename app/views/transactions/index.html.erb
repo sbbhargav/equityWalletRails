@@ -1,0 +1,43 @@
+<h1>Transactions</h1>
+<%= link_to "new transcation", new_stock_transaction_path(@stock,@transaction)%> 
+
+<p>
+		<strong>PurchasedTransactions:</strong>
+		<%= @transactions.purchased_trans(params[:stock_id]) %>
+</p>
+
+
+<p>
+		<strong>SoldTransactions:</strong>
+		<%= @transactions.sold_trans(params[:stock_id]) %>
+</p>
+
+<% @transactions.each do |transaction|%>
+<p>
+	<strong>companyname:</strong>
+	<%= link_to transaction.stock.companyname,[@stock,transaction]%>
+  </p>
+  <p>
+	<strong>no_of_stocks:</strong>
+	<%= transaction.no_of_stocks %>
+  </p>
+
+	<p>
+		<strong>status:</strong>
+		<%= transaction.status %>
+	</p>
+	
+
+
+
+  <%= link_to 'show', [@stock,transaction]%>
+  <%= link_to 'edit', edit_stock_transaction_path(@stock,transaction)%>
+
+  <%= link_to 'delete',[@stock,transaction], 'data-turbo-method': :delete %>   
+
+<% end %>
+
+
+
+<br><br>
+<%= link_to 'back',stock_path(@stock)%>

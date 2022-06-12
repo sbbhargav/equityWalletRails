@@ -1,0 +1,23 @@
+<%= form_with(model: stock, data: { turbo: false }) do |form|%>
+  
+	<div>
+		<% stock.errors.full_messages.each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+	</div>
+  
+	<div>
+		<%= form.label :companyname%><br>
+		<%= form.text_field :companyname%>	
+	</div>
+
+	<div>
+		<%= form.label :stockprice%><br>
+		<%= form.number_field :stockprice%>	
+	</div>
+
+	<div>
+		<%= form.submit %>
+	</div>
+
+<%end%>

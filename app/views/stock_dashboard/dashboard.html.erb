@@ -1,0 +1,14 @@
+<h1>total stocks of different companies </h1>
+
+<% @all_stocks.each do |t|%>
+  <p>
+    <%= link_to t.companyname, stock_path(t.id)%>
+	</p>
+  
+	 <p>
+		<strong>TotalStocks:</strong>
+		<%= t.transactions.purchased_trans(t.id) - t.transactions.sold_trans(t.id)  %>
+	</p>
+
+<% end %>
+

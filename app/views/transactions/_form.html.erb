@@ -1,0 +1,15 @@
+<%= form_with(model: [@stock,transaction], data: { turbo: false }) do |form| %>
+  <p>
+    <%= form.label :no_of_stocks %><br>
+    <%= form.text_field :no_of_stocks %>
+  </p>
+  <p>
+		<%= form.radio_button :status, :purchased %>
+    <%= form.label :status,'purchased' %><br>
+    <%= form.radio_button :status, :sold %>
+    <%= form.label :status,'sold' %><br>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

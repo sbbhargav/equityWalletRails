@@ -1,0 +1,37 @@
+
+<h1>Sign Up Page</h1>
+
+<%= form_with(model: @user,url: sign_up_path, data: { turbo: false }) do |form|%>
+  
+	<div>
+		<% @user.errors.full_messages.each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+	</div>
+  
+	<div class="form-outline mb-4">
+		<%= form.label :username%>
+		<%= form.text_field :username, class: "form-control",placeholder: "Enter username"%>
+  </div>
+
+	<div class="form-outline mb-4">
+		<%= form.label :email%>
+		<%= form.text_field :email, class: "form-control",placeholder: "Enter email"%>
+  </div>
+  
+	<div class="form-outline mb-4">
+		<%= form.label :password%>
+		<%= form.password_field :password, class: "form-control",placeholder: "Enter password"%>
+  </div>
+
+	<div class="form-outline mb-4">
+		<%= form.label :password_confirmation%>
+		<%= form.password_field :password_confirmation, class: "form-control",placeholder: "confirm password"%>
+  </div>
+  
+
+	<div>
+		<%= form.submit :SignUp, class: "btn btn-primary" %>
+	</div>
+
+<%end%>
