@@ -6,18 +6,18 @@
     <% end %>
 	</div>
   
-	<div>
+	<div class="form-outline mb-4">
 		<%= form.label :companyname%><br>
-		<%= form.text_field :companyname%>	
+		<%= form.text_field :companyname, class: "form-control"%>	
 	</div>
 
-	<div>
+	<div class="form-outline mb-4">
 		<%= form.label :stockprice%><br>
-		<%= form.number_field :stockprice%>	
+		<%= form.number_field :stockprice, class: "form-control"%>	
 	</div>
 
 	<div>
-		<%= form.submit %>
+		<%= form.submit class: 'btn btn-primary' %>
 	</div>
 
 <%end%>

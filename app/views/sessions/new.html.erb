@@ -1,4 +1,4 @@
-<h1>Sign In</h1>
+<h1 class="text-center">Sign In</h1>
 
 
 <%= form_with(url: sessions_path, data: { turbo: false }) do |form| %>
@@ -13,24 +13,11 @@
 		<%= form.password_field :password,class: "form-control" %>
   </div>
 
-	<div class="row mb-4">
-    <div class="col d-flex justify-content-center">
-      
-      <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="form2Example31" checked />
-        <label class="form-check-label" for="form2Example31"> Remember me </label>
-      </div>
-    </div>
-
-    <div class="col">
-      
-      <a href="#!">Forgot password?</a>
-    </div>
-  </div>
-
-
 	
-	<%= form.submit 'Log In',class: "btn btn-primary btn-block mb-4" %>
+
+	<div>
+    <%= form.submit 'Log In',class: "btn btn-primary btn-block mb-4" %>
+  </div>
 	
 
 	<div class="text-center">

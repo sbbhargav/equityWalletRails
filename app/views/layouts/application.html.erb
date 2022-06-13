@@ -10,7 +10,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="container">
+  <body>
   
     <%= render 'layouts/header'%>
 
@@ -20,8 +20,13 @@
         </div>
     <% end %>
     
-    <%= yield %>
+    <div class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-8">
+          <%= yield %>
+        </div>
+      </div>
+    </div>
 
-  
   </body>
 </html>

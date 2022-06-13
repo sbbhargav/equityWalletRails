@@ -1,18 +1,31 @@
 
-<h1>Sign Up Page</h1>
+<h1 class="text-center">Sign Up Page</h1>
 
 <%= form_with(model: @user,url: sign_up_path, data: { turbo: false }) do |form|%>
   
-	<div>
+	<%
+=begin%>
+ <div>
 		<% @user.errors.full_messages.each do |message| %>
       <div><%= message %></div>
     <% end %>
-	</div>
+	</div> 
+<%
+=end%>
   
-	<div class="form-outline mb-4">
-		<%= form.label :username%>
-		<%= form.text_field :username, class: "form-control",placeholder: "Enter username"%>
-  </div>
+	<% invalid = @user.errors.include?(:username) %>
+	<div class="form-group">
+		<%= form.label :username %>
+		<%= form.text_field :username, class: "form-control #{'is-invalid' if invalid}" %>
+		<% if invalid %>
+			<div class="invalid-feedback d-block">
+				<% @user.errors.full_messages_for(:username).each do |error_message| %>
+					<%= error_message %>.
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+
 
 	<div class="form-outline mb-4">
 		<%= form.label :email%>

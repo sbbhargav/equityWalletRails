@@ -1,7 +1,7 @@
 
-<h1>
+<h3>
 	<%= @stock.companyname %>
-</h1>
+</h3>
 
 <%= @stock.stockprice %>   
     
@@ -10,38 +10,17 @@
 
    
 <%= link_to 'Back', stocks_path %>
+
 <%
 =begin%>
- 
-<h2>transactions</h2>
-<% @stock.transactions.each do |transaction| %>
-  <p>
-    <strong>no_of_stocks:</strong>
-    <%= transaction.no_of_stocks %>
-  </p>
-
-  <p>
-    <strong>status:</strong>
-    <%= transaction.status %>
-  </p>
-	<%= link_to 'show', [@stock,transaction]%>
-	<%= link_to 'edit', edit_stock_transaction_path([transaction.stock,transaction])%>
-
-  <%= link_to 'delete',[@stock,transaction], 'data-turbo-method': :delete %>
-<% end %>
-
-<h2>Add a transaction </h2>
-
-<%= render 'transactions/form'%>
- 
+ <%= link_to "destroy", stock_path(@stock), 'data-turbo-method': :delete %> 
 <%
 =end%>
 
+
 <%= link_to 'transactions',stock_transactions_path(@stock)%>
 
-<br><br>
 
-<%= link_to 'back', stocks_path%>
 
 
 

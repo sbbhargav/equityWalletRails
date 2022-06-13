@@ -14,11 +14,18 @@
 
 <% @stocks.each do |stock| %>
 
-		<h2><%= link_to stock.companyname, stock_path(stock)%></h2>
-		
-		<p><%= stock.stockprice %></p>
-
-	  
+	<div class="card">
+		<div class="card-header">
+			<h3><%= link_to stock.companyname, stock_path(stock)%></h3>
+		</div>
+		<div class="card-body">
+			<h5 class="card-title"><%= stock.companyname%> stock price</h5>
+			<p class="card-text"><%= stock.stockprice %></p>
+			<%= link_to "destroy", stock_path(stock), 'data-turbo-method': :delete, class: "btn btn-primary" %>
+		</div>
+	</div>
+	
+ 
 <% end %>
 
 

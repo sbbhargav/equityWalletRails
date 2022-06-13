@@ -35,6 +35,13 @@ class StocksController < ApplicationController
 		end
 	end
 
+	def destroy
+
+		@stock.destroy
+		redirect_to stocks_path, notice: "deleted successfully"
+
+	end
+
 	private
   def set_stock
 		@stock =Stock.find(params[:id])
