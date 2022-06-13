@@ -1,32 +1,28 @@
-<h1>Stocks of a user</h1>
 
-<%= link_to 'Add Stock', new_stock_path %>
-
-<%= link_to 'dashboard', dashboard_path %>
-
-<%= link_to 'stocks summary', summary_path %>
-
-<%= link_to 'Amount summary', amount_path %>
-
-<%= link_to 'Total  stocks', total_stocks_path %>
-
-<%= link_to 'Total  Amount', total_amount_path %>
-
-<% @stocks.each do |stock| %>
-
-	<div class="card">
-		<div class="card-header">
-			<h3><%= link_to stock.companyname, stock_path(stock)%></h3>
-		</div>
-		<div class="card-body">
-			<h5 class="card-title"><%= stock.companyname%> stock price</h5>
-			<p class="card-text"><%= stock.stockprice %></p>
-			<%= link_to "destroy", stock_path(stock), 'data-turbo-method': :delete, class: "btn btn-primary" %>
-		</div>
+<div class="arrangement">
+	<h1>Stocks of a user</h1>
+  
+	<div>
+		<%= link_to 'Add Stock', new_stock_path, class: 'btn btn-primary' %>
 	</div>
 	
- 
-<% end %>
+
+	<% @stocks.each do |stock| %>
+
+		<div class="card w-100">
+			<div class="card-body d-flex justify-content-between">
+				<h5 class="card-title"><%= link_to stock.companyname, stock %></h5>
+				<div class="row-arrang">
+					<%= link_to 'show', stock_path(stock), class: 'btn btn-primary'%>
+					<%= link_to 'Edit', edit_stock_path(stock), class: 'btn btn-primary'%>
+					<%= button_to 'delete', stock_path(stock), method: :delete, class: 'btn btn-primary'%>
+				</div>
+			</div>
+		</div>
+	
+	<% end %>
+</div>
+
 
 
 

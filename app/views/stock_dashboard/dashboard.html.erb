@@ -1,14 +1,17 @@
-<h1>total stocks of different companies </h1>
 
-<% @all_stocks.each do |t|%>
-  <p>
-    <%= link_to t.companyname, stock_path(t.id)%>
-	</p>
-  
-	 <p>
-		<strong>TotalStocks:</strong>
-		<%= t.transactions.purchased_trans(t.id) - t.transactions.sold_trans(t.id)  %>
-	</p>
+<div class="arrangement">
+	<h1>total stocks of different companies </h1>
 
-<% end %>
+	<% @all_stocks.each do |t|%>
+
+		<div class="card w-100">
+				<div class="card-body d-flex justify-content-between">
+					<h5 class="card-title"><%= link_to t.companyname, stock_path(t.id) %></h5>
+					<p class="card-text"><%= t.transactions.purchased_trans(t.id) - t.transactions.sold_trans(t.id) %> stocks</p>
+				</div>
+		</div>
+
+	<% end %>
+
+</div>
 

@@ -1,24 +1,16 @@
 
-<h3>
-	<%= @stock.companyname %>
-</h3>
-
-<%= @stock.stockprice %>   
-    
-
-<%= link_to 'Edit', edit_stock_path(@stock)%>
-
-   
-<%= link_to 'Back', stocks_path %>
-
-<%
-=begin%>
- <%= link_to "destroy", stock_path(@stock), 'data-turbo-method': :delete %> 
-<%
-=end%>
-
-
-<%= link_to 'transactions',stock_transactions_path(@stock)%>
+<div class="card text-center">
+  <div class="card-header">
+    <h3><%= link_to @stock.companyname, stock_transactions_path(@stock) %></h3>
+  </div>
+  <div class="card-body">
+    <p class="card-text"><%= @stock.stockprice %> stock price</p>
+    <div class="  d-flex justify-content-md-around">
+    <%= link_to 'Back', stocks_path, class: 'btn btn-primary' %>
+    <%= link_to 'transactions',stock_transactions_path(@stock), class: 'btn btn-primary'%>
+  </div>
+  </div>
+</div>
 
 
 

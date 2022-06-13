@@ -10,10 +10,27 @@
 					<li class="nav-item">
 						<%= link_to "Log Out", logout_path, 'data-turbo-method': :delete, class: 'nav-link' %>
 					</li>
+					
+					<li class="nav-item">
+						<%= link_to 'dashboard', dashboard_path, class: 'nav-link' %>
+					</li>
 
 					<li class="nav-item">
-						<span><%= current_user.username%></span>
+						<%= link_to 'stocks summary', summary_path, class: 'nav-link' %>
 					</li>
+
+					<li class="nav-item">
+						<%= link_to 'Amount summary', amount_path, class: 'nav-link' %>
+					</li>
+					
+					<li class="nav-item">
+						<%= link_to 'Total  stocks', total_stocks_path, class: 'nav-link' %>
+					</li>
+
+					<li class="nav-item">
+						<%= link_to 'Total  Amount', total_amount_path, class: 'nav-link' %>
+					</li>
+
 				<% else %>
 					<li class="nav-item">
 						<%= link_to 'Register', sign_up_path, class: 'nav-link'%>
@@ -25,6 +42,12 @@
 			<% end %>
         
       </ul>
+      
+			<% if logged_in? %>
+				<div>
+					<%= current_user.username %>
+				</div>
+			<% end %>
       
     </div>
   </div>

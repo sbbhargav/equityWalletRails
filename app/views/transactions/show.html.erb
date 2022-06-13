@@ -1,16 +1,15 @@
-<h1>Transaction</h1>
-
-<p>
-	<strong>no_of_stocks:</strong>
-	<%= @transaction.no_of_stocks %>
-</p>
-
-<p>
-	<strong>status:</strong>
-	<%= @transaction.status %>
-</p>
+<div class="card">
+  <h5 class="card-header"><%= @transaction.status %> transaction</h5>
+  <div class="card-body">
+    <h5 class="card-title"><%= @transaction.stock.companyname %></h5>
+    <p class="card-text"><%= @transaction.no_of_stocks %> stocks</p>
+		<%= link_to 'back',stock_transactions_path([@stock]), class: 'btn btn-primary'%>
+  </div>
+</div>
 
 
 
-<%= link_to 'back',stock_transactions_path([@stock])%>
+
+
+
 

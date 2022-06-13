@@ -1,11 +1,10 @@
-<h1>User total amount Summary</h1>
 
-  <p>
-		<strong>Total amount invested:</strong>
-		<%= @total_invested_amount %>
-	</p>
+<div class="card w-100 arrangement">
+	<h3 class="card-header">User total amount Summary</h3>
+  <div class="card-body">
+    <p class="card-text"><strong>Total amount invested:</strong> <%= @total_invested_amount %> </p>
+		<p class="card-text"><strong>Total amount redeemed:</strong> <%= @total_redeemed_amount  %> </p>
+  </div>
+</div>
 
-	<p>
-		<strong>Total amount redeemed:</strong>
-		<%= @total_redeemed_amount  %>
-	</p>
+

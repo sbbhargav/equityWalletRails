@@ -1,20 +1,18 @@
-<h1>  different companies cost summary</h1>
 
-<% @all_stocks.each do |t|%>
-  <p>
-    <%= link_to t.companyname, stock_path(t.id)%>
-	</p>
-  
-	 <p>
-		<strong>Amount Invested:</strong>
-		<%= Stock.total_purchased_amount(t.id) %>
-		
-	</p>
+<div class="arrangement">
+	<h1>  Different companies cost summary</h1>
 
-	<p>
-		<strong>Amount Redeemed:</strong>
-		<%= Stock.total_sold_amount(t.id) %>
-	</p>
+	<% @all_stocks.each do |t|%>
 
-<% end %>
+		<div class="card">
+			<h5 class="card-header"><%= link_to t.companyname, stock_path(t.id) %></h5>
+			<div class="card-body">
+				<p class="card-text"> <strong>Amount Invested:</strong> <%= Stock.total_purchased_amount(t.id) %></p>
+				<p class="card-text"> <strong>Amount Redeemed:</strong> <%= Stock.total_sold_amount(t.id) %></p>
+			</div>
+		</div>
+
+	<% end %>
+</div>
+
 
