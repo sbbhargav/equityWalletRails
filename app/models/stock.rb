@@ -1,4 +1,6 @@
 class Stock < ApplicationRecord
+
+  
   belongs_to :user
   has_many :transactions ,dependent: :destroy
   validates :companyname, presence: true, uniqueness: true, length: { in: 2..50 }

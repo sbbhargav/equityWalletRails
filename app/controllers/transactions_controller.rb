@@ -1,11 +1,13 @@
 class TransactionsController < ApplicationController
+
+include TransactionsConcern
   before_action :set_stock
 	before_action :set_transaction, only: [:show,:edit,:destroy,:update]
 	before_action :authorized
 	before_action :set_stock_summary
 
 	def index
-		@transactions = @stock.transactions
+		@transactions = @stock.transactions.paginate(page: params[:page], per_page: 4)
 	end
   
 
@@ -21,29 +23,40 @@ class TransactionsController < ApplicationController
 	def create
 
 		@transaction = @stock.transactions.build(transaction_params)
-
-
-		tot=@transaction.no_of_stocks
-		
-		if @transaction.status == "sold"
-			if (@pur_stocks < (@sold_stocks + tot.to_i))
-				flash.now[:alert] = "no stocks are less to be sold "
-				render :new
-			else
-				if @transaction.save
-					redirect_to stock_transactions_path, notice: "transaction has been created"
-				else
-					render :new
-				end
-			end
-
-		else
+    
+    if enough_stocks(params[:stock_id],@transaction)
 			if @transaction.save
 				redirect_to stock_transactions_path, notice: "transaction has been created"
 			else
 				render :new
 			end
+		else
+			flash.now[:alert] = "no stocks are less to be sold "
+			render :new
 		end
+
+
+		# tot=@transaction.no_of_stocks
+		
+		# if @transaction.status == "sold"
+		# 	if (@pur_stocks < (@sold_stocks + tot.to_i))
+		# 		flash.now[:alert] = "no stocks are less to be sold "
+		# 		render :new
+		# 	else
+		# 		if @transaction.save
+		# 			redirect_to stock_transactions_path, notice: "transaction has been created"
+		# 		else
+		# 			render :new
+		# 		end
+		# 	end
+
+		# else
+		# 	if @transaction.save
+		# 		redirect_to stock_transactions_path, notice: "transaction has been created"
+		# 	else
+		# 		render :new
+		# 	end
+		# end
 	
 	end
 
