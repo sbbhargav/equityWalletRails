@@ -1,50 +1,72 @@
 
-<h1 class="text-center">Sign Up Page</h1>
+<div class="arrangement">
+	<h1 class="text-center">Sign Up Page</h1>
 
-<%= form_with(model: @user,url: sign_up_path, data: { turbo: false }) do |form|%>
-  
-	<%
-=begin%>
- <div>
-		<% @user.errors.full_messages.each do |message| %>
-      <div><%= message %></div>
-    <% end %>
-	</div> 
-<%
-=end%>
-  
-	<% invalid = @user.errors.include?(:username) %>
-	<div class="form-group">
-		<%= form.label :username %>
-		<%= form.text_field :username, class: "form-control #{'is-invalid' if invalid}" %>
-		<% if invalid %>
-			<div class="invalid-feedback d-block">
-				<% @user.errors.full_messages_for(:username).each do |error_message| %>
-					<%= error_message %>.
-				<% end %>
-			</div>
-		<% end %>
-	</div>
+	<%= form_with(model: @user,url: sign_up_path, data: { turbo: false },class: "arrangement") do |form|%>
+		
+		
+		
+		<% invalid = @user.errors.include?(:username) %>
+		<div class="form-group">
+			<%= form.label :username %>
+			<%= form.text_field :username, class: "form-control #{'is-invalid' if invalid}" %>
+			<% if invalid %>
+				<div class="invalid-feedback d-block">
+					<% @user.errors.full_messages_for(:username).each do |error_message| %>
+						<%= error_message %>.
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+
+		<% invalid = @user.errors.include?(:email) %>
+		<div class="form-group">
+			<%= form.label :email %>
+			<%= form.text_field :email, class: "form-control #{'is-invalid' if invalid}" %>
+			<% if invalid %>
+				<div class="invalid-feedback d-block">
+					<% @user.errors.full_messages_for(:email).each do |error_message| %>
+						<%= error_message %>.
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+
+		<% invalid = @user.errors.include?(:password) %>
+		<div class="form-group">
+			<%= form.label :password %>
+			<%= form.password_field :password, class: "form-control #{'is-invalid' if invalid}" %>
+			<% if invalid %>
+				<div class="invalid-feedback d-block">
+					<% @user.errors.full_messages_for(:password).each do |error_message| %>
+						<%= error_message %>.
+					<% end %>
+				</div>
+			<% end %>
+		</div>
+		
+		<% invalid = @user.errors.include?(:password_confirmation) %>
+		<div class="form-group">
+			<%= form.label :password_confirmation %>
+			<%= form.text_field :password_confirmation, class: "form-control #{'is-invalid' if invalid}" %>
+			<% if invalid %>
+				<div class="invalid-feedback d-block">
+					<% @user.errors.full_messages_for(:password_confirmation).each do |error_message| %>
+						<%= error_message %>.
+					<% end %>
+				</div>
+			<% end %>
+		</div>
 
 
-	<div class="form-outline mb-4">
-		<%= form.label :email%>
-		<%= form.text_field :email, class: "form-control",placeholder: "Enter email"%>
-  </div>
-  
-	<div class="form-outline mb-4">
-		<%= form.label :password%>
-		<%= form.password_field :password, class: "form-control",placeholder: "Enter password"%>
-  </div>
+		<div>
+			<%= form.submit :SignUp, class: "btn btn-primary" %>
+		</div>
 
-	<div class="form-outline mb-4">
-		<%= form.label :password_confirmation%>
-		<%= form.password_field :password_confirmation, class: "form-control",placeholder: "confirm password"%>
-  </div>
-  
+		<div class="text-center">
+			<p>already member? <%= link_to "Login", login_path %> </p>
+		</div>
 
-	<div>
-		<%= form.submit :SignUp, class: "btn btn-primary" %>
-	</div>
+	<%end%>
 
-<%end%>
+</div>

@@ -2,6 +2,7 @@ class TransactionsController < ApplicationController
   before_action :set_stock
 	before_action :set_transaction, only: [:show,:edit,:destroy,:update]
 	before_action :authorized
+	before_action :set_stock_summary
 
 	def index
 		@transactions = @stock.transactions
@@ -21,12 +22,11 @@ class TransactionsController < ApplicationController
 
 		@transaction = @stock.transactions.build(transaction_params)
 
-		tot=@transaction.no_of_stocks
-		pur_stocks = Transaction.purchased_trans(params[:stock_id])
-		sold_stocks = Transaction.sold_trans(params[:stock_id])
 
+		tot=@transaction.no_of_stocks
+		
 		if @transaction.status == "sold"
-			if (pur_stocks < (sold_stocks + tot.to_i))
+			if (@pur_stocks < (@sold_stocks + tot.to_i))
 				flash.now[:alert] = "no stocks are less to be sold "
 				render :new
 			else
@@ -44,8 +44,7 @@ class TransactionsController < ApplicationController
 				render :new
 			end
 		end
-
-		
+	
 	end
 
 	def show
@@ -66,9 +65,18 @@ class TransactionsController < ApplicationController
 	end
 
 	def destroy
-	
-		@transaction.destroy
-		redirect_to stock_transactions_path, notice: "deleted successfully"
+		
+    if @transaction.status == "purchased"
+			if @sold_stocks > (@pur_stocks-@transaction.no_of_stocks)
+				redirect_to stock_transactions_path, notice: "sold stocks are more than purchased stocks"
+			else
+				@transaction.destroy
+				redirect_to stock_transactions_path, notice: "deleted successfully"
+			end
+		else
+			@transaction.destroy
+			redirect_to stock_transactions_path, notice: "deleted successfully"
+		end
 		
 	end
 
@@ -78,6 +86,11 @@ class TransactionsController < ApplicationController
 	end
 	def set_transaction
 		@transaction = @stock.transactions.find(params[:id]) 
+	end
+
+	def set_stock_summary
+		@pur_stocks = Transaction.purchased_trans(params[:stock_id])
+		@sold_stocks = Transaction.sold_trans(params[:stock_id])
 	end
 
 	def transaction_params
