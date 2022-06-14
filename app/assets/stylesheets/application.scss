@@ -9,15 +9,10 @@ a{
 	text-decoration: none;
 }
 
-.arrangement{
-	display: flex;
-	flex-direction: column;
-	gap: 1rem;
-	margin-top: 2rem;
-}
 
 .row-arrang{
 	display: flex;
 	gap: 1rem;
+	flex-wrap: wrap;
 }
 

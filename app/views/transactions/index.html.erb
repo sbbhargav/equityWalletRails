@@ -1,11 +1,11 @@
 
-<div class="arrangement">
+<div class="d-grid gap-3  m-5">
 	<h1>Transactions of <%= @stock.companyname%></h1>
 
 	<div class="d-flex justify-content-around">
 		<%= link_to "new transcation", new_stock_transaction_path(@stock,@transaction), class: 'btn btn-primary'%> 
 
-		<%= link_to 'back',stock_path(@stock), class: 'btn btn-primary'%>
+		<%= link_to 'Back',stock_path(@stock), class: 'btn btn-primary'%>
 	</div>
 
 

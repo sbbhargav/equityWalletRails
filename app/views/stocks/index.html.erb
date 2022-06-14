@@ -1,6 +1,6 @@
 
-<div class="arrangement">
-	<h1>Stocks of a user</h1>
+<div class="d-grid gap-3  m-5">
+	<h1>Stocks of <%= current_user.username %> </h1>
   
 	<div>
 		<%= link_to 'Add Stock', new_stock_path, class: 'btn btn-primary' %>
@@ -13,9 +13,9 @@
 			<div class="card-body d-flex justify-content-between">
 				<h5 class="card-title"><%= link_to stock.companyname, stock %></h5>
 				<div class="row-arrang">
-					<%= link_to 'show', stock_path(stock), class: 'btn btn-primary'%>
-					<%= link_to 'Edit', edit_stock_path(stock), class: 'btn btn-primary'%>
-					<%= button_to 'delete', stock_path(stock), method: :delete, class: 'btn btn-primary'%>
+					<%= link_to 'show', stock_path(stock), class: 'btn btn-primary '%>
+					<%= link_to 'Edit', edit_stock_path(stock), class: 'btn btn-primary '%>
+					<%= button_to 'delete', stock_path(stock), method: :delete, class: 'btn btn-primary '%>
 				</div>
 			</div>
 		</div>
