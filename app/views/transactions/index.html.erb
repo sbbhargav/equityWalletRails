@@ -4,8 +4,7 @@
 
 	<div class="d-flex justify-content-around">
 		<%= link_to "new transcation", new_stock_transaction_path(@stock,@transaction), class: 'btn btn-primary'%> 
-
-		<%= link_to 'Back',stock_path(@stock), class: 'btn btn-primary'%>
+		<%= back_link(stock_path(@stock)) %>
 	</div>
 
 
@@ -17,9 +16,9 @@
 					<h5 class="card-title"><%= transaction.status%></h5>
 					<p class="card-text"><%= transaction.no_of_stocks%> stocks</p>
 					<div class="row-arrang">
-								<%= link_to 'show', [@stock,transaction], class: 'btn btn-secondary'%>
-								<%= link_to 'edit', edit_stock_transaction_path(@stock,transaction),class: 'btn btn-secondary'%>
-								<%= button_to 'delete',[@stock,transaction], method: :delete,class: 'btn btn-secondary' %>
+						<%= show_link([@stock,transaction],'btn btn-secondary') %>
+						<%= edit_link(edit_stock_transaction_path(@stock,transaction),'btn btn-secondary') %>
+						<%= delete_link([@stock,transaction],'btn btn-secondary') %>
 					</div>
 				</div>
 			</div>

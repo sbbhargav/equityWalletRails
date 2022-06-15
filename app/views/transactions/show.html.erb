@@ -3,7 +3,7 @@
   <div class="card-body">
     <h5 class="card-title"><%= @transaction.stock.companyname %></h5>
     <p class="card-text"><%= @transaction.no_of_stocks %> stocks</p>
-		<%= link_to 'back',stock_transactions_path([@stock]), class: 'btn btn-primary'%>
+    <%= back_link(stock_transactions_path([@stock])) %>
   </div>
 </div>
 
