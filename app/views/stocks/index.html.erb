@@ -6,11 +6,17 @@
 		<%= link_to 'Add Stock', new_stock_path, class: 'btn btn-primary' %>
 	</div>
 	
+	<div class="card w-100">
+		<div class="card-header d-flex justify-content-between flex-wrap bg-info">
+			<h3>CompanyName</h3>
+			<h3>options</h3>
+		</div>
+	</div>
 
 	<% @stocks.each do |stock| %>
 
 		<div class="card w-100">
-			<div class="card-body d-flex justify-content-between">
+			<div class="card-body d-flex justify-content-between flex-wrap">
 				<h5 class="card-title"><%= link_to stock.companyname, stock %></h5>
 				<div class="row-arrang">
 					<%= show_link(stock_path(stock),'btn btn-primary') %>
