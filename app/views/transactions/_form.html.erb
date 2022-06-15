@@ -1,18 +1,22 @@
 
 <%= form_with(model: [@stock,transaction], data: { turbo: false }) do |form| %>
-
+	
 	<%= render 'shared/messages', data: transaction %>
+
 	<div class="form-outline mb-4">
 		<%= form.label :no_of_stocks%><br>
 		<%= form.text_field :no_of_stocks, class: "form-control"%>	
 	</div>
 
-	<div class="form-outline mb-4">
-		<%= form.radio_button :status, :purchased %>
-		<%= form.label :status,'purchased' %><br>
-		<%= form.radio_button :status, :sold %>
-		<%= form.label :status,'sold' %><br>
-			
+	<div class="form-outline mb-4 row row-cols-1">
+		<div class="col d-flex gap-2">
+			<%= form.radio_button :status, :purchased %>
+			<%= form.label :status,'purchased' %>
+		</div>
+		<div class="col d-flex gap-2">
+			<%= form.radio_button :status, :sold %>
+			<%= form.label :status,'sold' %>
+		</div>	
 	</div>
 
 	<div class="d-flex justify-content-around">

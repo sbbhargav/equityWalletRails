@@ -1,6 +1,5 @@
 class TransactionsController < ApplicationController
 
-include TransactionsConcern
   before_action :set_stock
 	before_action :set_transaction, only: [:show,:edit,:destroy,:update]
 	before_action :authorized
@@ -24,39 +23,11 @@ include TransactionsConcern
 
 		@transaction = @stock.transactions.build(transaction_params)
     
-    if enough_stocks(params[:stock_id],@transaction)
-			if @transaction.save
+		if @transaction.save
 				redirect_to stock_transactions_path, notice: "transaction has been created"
 			else
 				render :new
 			end
-		else
-			flash.now[:alert] = "no stocks are less to be sold "
-			render :new
-		end
-
-
-		# tot=@transaction.no_of_stocks
-		
-		# if @transaction.status == "sold"
-		# 	if (@pur_stocks < (@sold_stocks + tot.to_i))
-		# 		flash.now[:alert] = "no stocks are less to be sold "
-		# 		render :new
-		# 	else
-		# 		if @transaction.save
-		# 			redirect_to stock_transactions_path, notice: "transaction has been created"
-		# 		else
-		# 			render :new
-		# 		end
-		# 	end
-
-		# else
-		# 	if @transaction.save
-		# 		redirect_to stock_transactions_path, notice: "transaction has been created"
-		# 	else
-		# 		render :new
-		# 	end
-		# end
 	
 	end
 
@@ -78,18 +49,21 @@ include TransactionsConcern
 	end
 
 	def destroy
-		
-    if @transaction.status == "purchased"
-			if @sold_stocks > (@pur_stocks-@transaction.no_of_stocks)
-				redirect_to stock_transactions_path, notice: "sold stocks are more than purchased stocks"
-			else
-				@transaction.destroy
-				redirect_to stock_transactions_path, notice: "deleted successfully"
-			end
-		else
-			@transaction.destroy
-			redirect_to stock_transactions_path, notice: "deleted successfully"
-		end
+		@transaction.destroy
+    
+		redirect_to stock_transactions_path, notice: "deleted successfully"
+
+    # if @transaction.status == "purchased"
+		# 	if @sold_stocks > (@pur_stocks-@transaction.no_of_stocks)
+		# 		redirect_to stock_transactions_path, notice: "sold stocks are more than purchased stocks"
+		# 	else
+		# 		@transaction.destroy
+		# 		redirect_to stock_transactions_path, notice: "deleted successfully"
+		# 	end
+		# else
+		# 	@transaction.destroy
+		# 	redirect_to stock_transactions_path, notice: "deleted successfully"
+		# end
 		
 	end
 
