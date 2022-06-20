@@ -30,6 +30,6 @@ class StockDashboardController < ApplicationController
 
 	private 
 	def set_stocks
-		@all_stocks = current_user.stocks
+		@all_stocks = current_user.stocks.paginate(page: params[:page], per_page: 3)
 	end
 end

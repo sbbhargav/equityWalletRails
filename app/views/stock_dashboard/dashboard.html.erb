@@ -5,7 +5,7 @@
 	<div class="card w-100">
 		<div class="card-header d-flex justify-content-between flex-wrap bg-info">
 			<h3>CompanyName</h3>
-			<h3>No_Of_Stocks</h3>
+			<h3>No_of_Stocks</h3>
 		</div>
 	</div>
 
@@ -19,6 +19,8 @@
 		</div>
 
 	<% end %>
+
+	<%= will_paginate @all_stocks, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 
 </div>
 

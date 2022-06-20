@@ -1,6 +1,6 @@
 
 <div class="d-grid gap-3  m-5">
-	<h1> stocks summary of different companies </h1>
+	<h1> Stocks Summary of Different Companies </h1>
 
 	<% @all_stocks.each do |t|%>
 
@@ -13,6 +13,9 @@
 		</div>
 
 	<% end %>
+
+	<%= will_paginate @all_stocks, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+	
 </div>
 
 
