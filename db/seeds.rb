@@ -5,3 +5,42 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+User.create!(
+	username: 'bhargav',
+	email: 'sb.bhargav1993@gmail.com',
+	password: '1234',
+	password_confirmation: '1234'
+)
+
+puts "user has been created"
+
+10.times do |stock|
+	Stock.create!(
+		companyname: "Company #{stock}",
+		stockprice: 1000*(stock+1),
+		user_id: User.last.id
+	)
+
+end
+
+puts "10 stocks are added"
+
+Stock.all.each_with_index do |stock,idx|
+	5.times do |iter|
+		stock.transactions.create!(
+		no_of_stocks: iter+100,
+		status: "purchased"
+	)
+	end
+
+	5.times do |iter|
+		stock.transactions.create!(
+		no_of_stocks: iter+50,
+		status: "sold"
+	)
+	end
+	
+end
+
+puts "transactions are created"

@@ -6,48 +6,10 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-				<% if logged_in? %>
-					<li class="nav-item">
-						<%= link_to "Log Out", logout_path, 'data-turbo-method': :delete, class: 'nav-link' %>
-					</li>
-					
-					<li class="nav-item">
-						<%= link_to 'dashboard', dashboard_path, class: 'nav-link' %>
-					</li>
-
-					<li class="nav-item">
-						<%= link_to 'stocks summary', summary_path, class: 'nav-link' %>
-					</li>
-
-					<li class="nav-item">
-						<%= link_to 'Amount summary', amount_path, class: 'nav-link' %>
-					</li>
-					
-					<li class="nav-item">
-						<%= link_to 'Total  stocks', total_stocks_path, class: 'nav-link' %>
-					</li>
-
-					<li class="nav-item">
-						<%= link_to 'Total  Amount', total_amount_path, class: 'nav-link' %>
-					</li>
-
-				<% else %>
-					<li class="nav-item">
-						<%= link_to 'Register', sign_up_path, class: 'nav-link'%>
-					</li>
-
-					<li class="nav-item">
-					<%= link_to 'Login', login_path, class: 'nav-link'%>
-				</li>
-			<% end %>
-        
+				<%= login_helper('nav-link') %>
       </ul>
       
-			<% if logged_in? %>
-				<div>
-					<%= current_user.username %>
-				</div>
-			<% end %>
+			<%= login_name %>
       
     </div>
   </div>

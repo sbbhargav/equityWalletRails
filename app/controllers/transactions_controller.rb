@@ -8,11 +8,6 @@ class TransactionsController < ApplicationController
 	def index
 		@transactions = @stock.transactions.paginate(page: params[:page], per_page: 4)
 	end
-  
-
-	def purchased_trans
-		@trans = Transaction.purchased_trans(params[:stock_id])
-	end
 
 	
 	def new
@@ -49,6 +44,7 @@ class TransactionsController < ApplicationController
 	end
 
 	def destroy
+		
 		@transaction.destroy
     
 		redirect_to stock_transactions_path, notice: "deleted successfully"

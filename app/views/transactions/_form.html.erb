@@ -1,13 +1,15 @@
 
-<%= form_with(model: [@stock,transaction], data: { turbo: false }) do |form| %>
+<%= form_with(model: [@stock,transaction], data: { turbo: false },class: "d-grid gap-3") do |form| %>
 	
-	<%= render 'shared/messages', data: transaction %>
 
-	<div class="form-outline mb-4">
-		<%= form.label :no_of_stocks%><br>
-		<%= form.text_field :no_of_stocks, class: "form-control"%>	
+	<% invalid = check_errors(@transaction,:no_of_stocks) %>
+	<div class="form-group">
+		<%= form.label :no_of_stocks %>
+		<%= form.text_field :no_of_stocks, class: "form-control #{'is-invalid' if invalid}" %>
+		<%= check_valid(@transaction,:no_of_stocks,invalid) %>
 	</div>
 
+	<% invalid = check_errors(@transaction,:status) %>
 	<div class="form-outline mb-4 row row-cols-1">
 		<div class="col d-flex gap-2">
 			<%= form.radio_button :status, :purchased %>
@@ -17,6 +19,7 @@
 			<%= form.radio_button :status, :sold %>
 			<%= form.label :status,'sold' %>
 		</div>	
+		<%= check_valid(@transaction,:status,invalid) %>
 	</div>
 
 	<div class="d-flex justify-content-around">
