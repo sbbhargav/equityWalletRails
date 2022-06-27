@@ -8,8 +8,8 @@ class Transaction < ApplicationRecord
   validates :status, presence: true
   validates :no_of_stocks, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 10001 }
   validate :has_enough_stocks?, on: [:create,:update]
-  validate :has_more_sold_stocks?, on: :destroy
   
+
 
   scope :purchased_trans, -> (s_id) { where(status: "purchased",stock_id: s_id).sum(:no_of_stocks)}
 
