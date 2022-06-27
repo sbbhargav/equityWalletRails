@@ -17,7 +17,7 @@ class Transaction < ApplicationRecord
 
   
 
-  before_destroy :has_more_sold_stocks
+  before_destroy :has_enough_purchased_stocks
 
 
   def has_enough_stocks?
@@ -28,7 +28,7 @@ class Transaction < ApplicationRecord
     end
   end
 
-  def has_more_sold_stocks
+  def has_enough_purchased_stocks
     if status == "purchased" and Transaction.sold_trans(stock_id) > (Transaction.purchased_trans(stock_id)-no_of_stocks)
       errors.add(:status, message: "can't be deleted") 
       throw(:abort)

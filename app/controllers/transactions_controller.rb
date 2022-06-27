@@ -46,20 +46,12 @@ class TransactionsController < ApplicationController
 	def destroy
 		
 		@transaction.destroy
-    
-		redirect_to stock_transactions_path, notice: "deleted successfully"
-
-    # if @transaction.status == "purchased"
-		# 	if @sold_stocks > (@pur_stocks-@transaction.no_of_stocks)
-		# 		redirect_to stock_transactions_path, notice: "sold stocks are more than purchased stocks"
-		# 	else
-		# 		@transaction.destroy
-		# 		redirect_to stock_transactions_path, notice: "deleted successfully"
-		# 	end
-		# else
-		# 	@transaction.destroy
-		# 	redirect_to stock_transactions_path, notice: "deleted successfully"
-		# end
+		
+		if @transaction.errors.any?
+			redirect_to stock_transactions_path, notice: "can't delete purchased stocks can't be less than sold stocks"
+    else
+			redirect_to stock_transactions_path, notice: "deleted successfully"
+		end
 		
 	end
 
