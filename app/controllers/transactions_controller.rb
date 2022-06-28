@@ -3,8 +3,8 @@ class TransactionsController < ApplicationController
   before_action :set_stock
 	before_action :set_transaction, only: [:show,:edit,:destroy,:update]
 	before_action :authorized
-	before_action :set_stock_summary
-
+	
+	
 	def index
 		@transactions = @stock.transactions.paginate(page: params[:page], per_page: 4)
 	end
@@ -63,10 +63,6 @@ class TransactionsController < ApplicationController
 		@transaction = @stock.transactions.find(params[:id]) 
 	end
 
-	def set_stock_summary
-		@pur_stocks = Transaction.purchased_trans(params[:stock_id])
-		@sold_stocks = Transaction.sold_trans(params[:stock_id])
-	end
 
 	def transaction_params
 		params.require(:transaction).permit([:no_of_stocks,:status])
