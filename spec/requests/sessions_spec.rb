@@ -7,14 +7,6 @@ RSpec.describe "Sessions", type: :request do
       expect(response.status).to eq(200)
     end
   end
-  describe "POST /create" do
-    it "redirects to root_path if user exists" do
-      post sessions_path, params: {
-        user: {
-          
-        }
-      }
-    end
-  end
+  
 
 end
