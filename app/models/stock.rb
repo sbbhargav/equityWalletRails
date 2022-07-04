@@ -1,13 +1,12 @@
 class Stock < ApplicationRecord
 
-  
   belongs_to :user
   has_many :transactions ,dependent: :destroy
+
   validates :companyname, presence: true, length: { in: 2..50 }, uniqueness: { scope: [:companyname, :user_id] }
   validates :stockprice, presence: true, numericality: { only_integer: true, greater_than: 899, less_than: 10000000 }
   
   scope :total_purchased_amount, -> (s_id) { Stock.find(s_id).stockprice * Transaction.purchased_trans(s_id) }
-
   scope :total_sold_amount, -> (s_id) { Stock.find(s_id).stockprice * Transaction.sold_trans(s_id) }
 
 
@@ -42,6 +41,5 @@ class Stock < ApplicationRecord
     end
     redeemed_amount
   end
-
 
 end

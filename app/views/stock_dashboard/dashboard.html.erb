@@ -1,26 +1,26 @@
 
 <div class="d-grid gap-3  mt-5 border border-dark p-3">
-	<h1>Total stocks of different companies </h1>
-	
-	<div class="card w-100">
-		<div class="card-header d-flex justify-content-between flex-wrap bg-info">
-			<h3>CompanyName</h3>
-			<h3>No_of_Stocks</h3>
-		</div>
-	</div>
+  <h1>Total stocks of different companies </h1>
+  
+  <div class="card w-100">
+    <div class="card-header d-flex justify-content-between flex-wrap bg-info">
+      <h3>CompanyName</h3>
+      <h3>No_of_Stocks</h3>
+    </div>
+  </div>
 
-	<% @all_stocks.each do |t|%>
+  <% @all_stocks.each do |t|%>
 
-		<div class="card w-100">
-				<div class="card-body d-flex justify-content-between">
-					<h5 class="card-title"><%= link_to t.companyname, stock_path(t.id) %></h5>
-					<p class="card-text"><%= t.transactions.purchased_trans(t.id) - t.transactions.sold_trans(t.id) %> stocks</p>
-				</div>
-		</div>
+    <div class="card w-100">
+        <div class="card-body d-flex justify-content-between">
+          <h5 class="card-title"><%= link_to t.companyname, stock_path(t.id) %></h5>
+          <p class="card-text"><%= t.transactions.purchased_trans(t.id) - t.transactions.sold_trans(t.id) %> stocks</p>
+        </div>
+    </div>
 
-	<% end %>
+  <% end %>
 
-	<%= will_paginate @all_stocks, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  <%= will_paginate @all_stocks, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 
 </div>
 

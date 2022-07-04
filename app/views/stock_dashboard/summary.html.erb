@@ -1,21 +1,21 @@
 
 <div class="d-grid gap-3  mt-5 border border-dark p-3">
-	<h1> Stocks Summary of Different Companies </h1>
+  <h1> Stocks Summary of Different Companies </h1>
 
-	<% @all_stocks.each do |t|%>
+  <% @all_stocks.each do |t|%>
 
-		<div class="card">
-			<h5 class="card-header"><%= link_to t.companyname, stock_path(t.id) %></h5>
-			<div class="card-body">
-				<p class="card-text"> <strong>purchased stocks</strong> <%= t.transactions.purchased_trans(t.id) %></p>
-				<p class="card-text"> <strong>sold stocks</strong> <%= t.transactions.sold_trans(t.id) %></p>
-			</div>
-		</div>
+    <div class="card">
+      <h5 class="card-header"><%= link_to t.companyname, stock_path(t.id) %></h5>
+      <div class="card-body">
+        <p class="card-text"> <strong>purchased stocks</strong> <%= t.transactions.purchased_trans(t.id) %></p>
+        <p class="card-text"> <strong>sold stocks</strong> <%= t.transactions.sold_trans(t.id) %></p>
+      </div>
+    </div>
 
-	<% end %>
+  <% end %>
 
-	<%= will_paginate @all_stocks, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
-	
+  <%= will_paginate @all_stocks, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  
 </div>
 
 

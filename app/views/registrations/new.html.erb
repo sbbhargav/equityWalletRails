@@ -1,47 +1,45 @@
 
 <div class="row justify-content-center mt-5 border border-info p-3">
-	<h1>Sign Up Page</h1>
+  <h1>Sign Up Page</h1>
 
-	<%= form_with(model: @user,url: sign_up_path, data: { turbo: false },class: "col-md-6 col-md-offset-3 d-grid gap-3") do |form|%>
-		
-		
-		<% invalid = check_errors(@user,:username) %>
-		<div class="form-group">
-			<%= form.label :username %>
-			<%= form.text_field :username, class: "form-control #{'is-invalid' if invalid}" %>
-			<%= check_valid(@user,:username,invalid) %>
-		</div>
+  <%= form_with(model: @user,url: sign_up_path, data: { turbo: false },class: "col-md-6 col-md-offset-3 d-grid gap-3") do |form|%>
+    
+    <% invalid = check_errors(@user,:username) %>
+    <div class="form-group">
+      <%= form.label :username %>
+      <%= form.text_field :username, class: "form-control #{'is-invalid' if invalid}" %>
+      <%= check_valid(@user,:username,invalid) %>
+    </div>
 
-		<% invalid = check_errors(@user,:email) %>
-		<div class="form-group">
-			<%= form.label :email %>
-			<%= form.text_field :email, class: "form-control #{'is-invalid' if invalid}" %>
-			<%= check_valid(@user,:email,invalid) %>
-		</div>
+    <% invalid = check_errors(@user,:email) %>
+    <div class="form-group">
+      <%= form.label :email %>
+      <%= form.text_field :email, class: "form-control #{'is-invalid' if invalid}" %>
+      <%= check_valid(@user,:email,invalid) %>
+    </div>
 
-		<% invalid = check_errors(@user,:password) %>
-		<div class="form-group">
-			<%= form.label :password %>
-			<%= form.password_field :password, class: "form-control #{'is-invalid' if invalid}" %>
-			<%= check_valid(@user,:password,invalid) %>
-		</div>
-		
-		<% invalid = check_errors(@user,:password_confirmation) %>
-		<div class="form-group">
-			<%= form.label :password_confirmation %>
-			<%= form.text_field :password_confirmation, class: "form-control #{'is-invalid' if invalid}" %>
-			<%= check_valid(@user,:password_confirmation,invalid) %>
-		</div>
+    <% invalid = check_errors(@user,:password) %>
+    <div class="form-group">
+      <%= form.label :password %>
+      <%= form.password_field :password, class: "form-control #{'is-invalid' if invalid}" %>
+      <%= check_valid(@user,:password,invalid) %>
+    </div>
+    
+    <% invalid = check_errors(@user,:password_confirmation) %>
+    <div class="form-group">
+      <%= form.label :password_confirmation %>
+      <%= form.text_field :password_confirmation, class: "form-control #{'is-invalid' if invalid}" %>
+      <%= check_valid(@user,:password_confirmation,invalid) %>
+    </div>
 
+    <div>
+      <%= form.submit :SignUp, class: "btn btn-primary" %>
+    </div>
 
-		<div>
-			<%= form.submit :SignUp, class: "btn btn-primary" %>
-		</div>
+    <div class="text-center">
+      <p>already member? <%= link_to "Login", login_path %> </p>
+    </div>
 
-		<div class="text-center">
-			<p>already member? <%= link_to "Login", login_path %> </p>
-		</div>
-
-	<%end%>
+  <%end%>
 
 </div>

@@ -1,40 +1,40 @@
 
 <div class="d-grid gap-3  mt-5 border border-dark p-3">
-	<h1>Transactions of <%= @stock.companyname%></h1>
+  <h1>Transactions of <%= @stock.companyname%></h1>
 
-	<div class="d-flex justify-content-around flex-wrap gap-2">
-		<%= link_to "new transcation", new_stock_transaction_path(@stock,@transaction), class: 'btn btn-primary'%> 
-		<%= back_link(stock_path(@stock)) %>
-	</div>
+  <div class="d-flex justify-content-around flex-wrap gap-2">
+    <%= link_to "new transcation", new_stock_transaction_path(@stock,@transaction), class: 'btn btn-primary'%> 
+    <%= back_link(stock_path(@stock)) %>
+  </div>
    
-	<div class="card w-100">
-		<div class="card-header d-flex justify-content-between flex-wrap bg-info">
-			<h3 class="flex-even">Transaction</h3>
-			<h3 class="flex-even">no_of_stocks</h3>
-			<h3 class="flex-even ps-5">options</h3>
-		</div>
-	</div>
+  <div class="card w-100">
+    <div class="card-header d-flex justify-content-between flex-wrap bg-info">
+      <h3 class="flex-even">Transaction</h3>
+      <h3 class="flex-even">no_of_stocks</h3>
+      <h3 class="flex-even ps-5">options</h3>
+    </div>
+  </div>
 
 
-	
-	<% @transactions.each do |transaction|%>
-		
-		<div class="card w-100">
-			<div class="card-body d-flex justify-content-between flex-wrap">
-				<h5 class="card-title flex-even"><%= transaction.status%></h5>
-				<p class="card-text flex-even"><%= transaction.no_of_stocks%> stocks</p>
-				<div class="row-arrang flex-even">
-					<%= show_link([@stock,transaction],'btn btn-secondary') %>
-					<%= edit_link(edit_stock_transaction_path(@stock,transaction),'btn btn-secondary') %>
-					<%= delete_link([@stock,transaction],'btn btn-secondary') %>
-				</div>
-			</div>
-		</div>
+  
+  <% @transactions.each do |transaction|%>
+    
+    <div class="card w-100">
+      <div class="card-body d-flex justify-content-between flex-wrap">
+        <h5 class="card-title flex-even"><%= transaction.status%></h5>
+        <p class="card-text flex-even"><%= transaction.no_of_stocks%> stocks</p>
+        <div class="row-arrang flex-even">
+          <%= show_link([@stock,transaction],'btn btn-secondary') %>
+          <%= edit_link(edit_stock_transaction_path(@stock,transaction),'btn btn-secondary') %>
+          <%= delete_link([@stock,transaction],'btn btn-secondary') %>
+        </div>
+      </div>
+    </div>
 
-	<% end %>
-		
+  <% end %>
+    
 
-	<%= will_paginate @transactions, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+  <%= will_paginate @transactions, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
 
 </div>
 

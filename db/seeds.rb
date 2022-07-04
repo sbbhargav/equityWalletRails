@@ -11,40 +11,40 @@ Stock.delete_all
 Transaction.delete_all
 
 User.create!(
-	username: 'bhargav',
-	email: 'sb.bhargav1993@gmail.com',
-	password: '1234',
-	password_confirmation: '1234'
+  username: 'bhargav',
+  email: 'sb.bhargav1993@gmail.com',
+  password: '1234',
+  password_confirmation: '1234'
 )
 
 puts "user has been created"
 
 10.times do |num|
-	User.first.stocks.create!(
-		companyname: "Company #{num}",
-		stockprice: 1000*(num+1),
-		user_id: User.last.id
-	)
+  User.first.stocks.create!(
+    companyname: "Company #{num}",
+    stockprice: 1000*(num+1),
+    user_id: User.last.id
+  )
 
 end
 
 puts "10 stocks are added"
 
 Stock.all.each_with_index do |stock,idx|
-	5.times do |iter|
-		stock.transactions.create!(
-		no_of_stocks: iter+100,
-		status: "purchased"
-	)
-	end
+  5.times do |iter|
+    stock.transactions.create!(
+    no_of_stocks: iter+100,
+    status: "purchased"
+  )
+  end
 
-	5.times do |iter|
-		stock.transactions.create!(
-		no_of_stocks: iter+50,
-		status: "sold"
-	)
-	end
-	
+  5.times do |iter|
+    stock.transactions.create!(
+    no_of_stocks: iter+50,
+    status: "sold"
+  )
+  end
+  
 end
 
 puts "transactions are created"
