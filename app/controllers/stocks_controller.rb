@@ -14,7 +14,8 @@ class StocksController < ApplicationController
   def create
     @stock = current_user.stocks.build(stock_params)
     if @stock.save
-      redirect_to @stock, notice: 'stock created successfully'
+      flash[:success] = 'stock created successfully'
+      redirect_to @stock
     else
       render :new
     end
@@ -26,7 +27,8 @@ class StocksController < ApplicationController
 
   def update
     if @stock.update(stock_params)
-      redirect_to @stock, notice: "updated sucessfully"
+      flash[:success] = "updated sucessfully"
+      redirect_to @stock
     else
       render :edit
     end
@@ -34,7 +36,8 @@ class StocksController < ApplicationController
 
   def destroy
     @stock.destroy
-    redirect_to stocks_path, notice: "deleted successfully"
+    flash[:success] = "deleted successfully"
+    redirect_to stocks_path
   end
 
   private

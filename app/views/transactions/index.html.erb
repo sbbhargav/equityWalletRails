@@ -3,7 +3,7 @@
   <h1>Transactions of <%= @stock.companyname%></h1>
 
   <div class="d-flex justify-content-around flex-wrap gap-2">
-    <%= link_to "new transcation", new_stock_transaction_path(@stock,@transaction), class: 'btn btn-primary'%> 
+    <%= link_to "new transcation", new_stock_transaction_path(@stock,@transaction), class: 'btn btn-secondary'%> 
     <%= back_link(stock_path(@stock)) %>
   </div>
    
@@ -24,9 +24,9 @@
         <h5 class="card-title flex-even"><%= transaction.status%></h5>
         <p class="card-text flex-even"><%= transaction.no_of_stocks%> stocks</p>
         <div class="row-arrang flex-even">
-          <%= show_link([@stock,transaction],'btn btn-secondary') %>
+          <%= show_link([@stock,transaction],'btn btn-info') %>
           <%= edit_link(edit_stock_transaction_path(@stock,transaction),'btn btn-secondary') %>
-          <%= delete_link([@stock,transaction],'btn btn-secondary') %>
+          <%= delete_link([@stock,transaction],'btn btn-danger') %>
         </div>
       </div>
     </div>

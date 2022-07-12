@@ -15,7 +15,8 @@ class TransactionsController < ApplicationController
   def create
     @transaction = @stock.transactions.build(transaction_params)
     if @transaction.save
-        redirect_to stock_transactions_path, notice: "transaction has been created"
+      flash[:success] = 'transaction has been created'
+      redirect_to stock_transactions_path
     else
       render :new
     end
@@ -27,7 +28,8 @@ class TransactionsController < ApplicationController
 
   def update
     if @transaction.update(transaction_params)
-      redirect_to [@stock,@transaction],notice: "updated successfully"
+      flash[:success] = "updated successfully"
+      redirect_to [@stock,@transaction]
     else
       render :edit
     end
@@ -36,9 +38,11 @@ class TransactionsController < ApplicationController
   def destroy
     @transaction.destroy
     if @transaction.errors.any?
-      redirect_to stock_transactions_path, notice: "can't delete purchased stocks can't be less than sold stocks"
+      flash[:danger] = "can't delete purchased stocks can't be less than sold stocks"
+      redirect_to stock_transactions_path
     else
-      redirect_to stock_transactions_path, notice: "deleted successfully"
+      flash[:success] = "deleted successfully"
+      redirect_to stock_transactions_path
     end
   end
 

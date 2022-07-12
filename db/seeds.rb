@@ -13,8 +13,8 @@ Transaction.delete_all
 User.create!(
   username: 'bhargav',
   email: 'sb.bhargav1993@gmail.com',
-  password: '1234',
-  password_confirmation: '1234'
+  password: '12345678A$',
+  password_confirmation: '12345678A$'
 )
 
 puts "user has been created"

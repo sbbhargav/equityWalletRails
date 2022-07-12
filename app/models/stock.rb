@@ -1,9 +1,9 @@
 class Stock < ApplicationRecord
 
   belongs_to :user
-  has_many :transactions ,dependent: :destroy
+  has_many :transactions, dependent: :delete_all
 
-  validates :companyname, presence: true, length: { in: 2..50 }, uniqueness: { scope: [:companyname, :user_id] }
+  validates :companyname, presence: true, length: { in: 4..50 }, uniqueness: { scope: [:companyname, :user_id] }
   validates :stockprice, presence: true, numericality: { only_integer: true, greater_than: 899, less_than: 10000000 }
   
   scope :total_purchased_amount, -> (s_id) { Stock.find(s_id).stockprice * Transaction.purchased_trans(s_id) }

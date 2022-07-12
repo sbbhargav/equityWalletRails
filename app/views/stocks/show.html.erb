@@ -6,7 +6,7 @@
   <div class="card-body">
     <p class="card-text"><%= @stock.stockprice %> stock price</p>
     <div class="d-flex justify-content-around flex-wrap row-arrang">
-      <%= link_to 'transactions',stock_transactions_path(@stock), class: 'btn btn-primary'%>
+      <%= link_to 'transactions',stock_transactions_path(@stock), class: 'btn btn-info'%>
       <%= back_link(stocks_path) %>
     </div>
   </div>

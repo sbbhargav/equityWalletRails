@@ -11,7 +11,7 @@
   <% invalid = check_errors(@stock,:stockprice) %>
   <div class="form-group">
     <%= form.label :stockprice %>
-    <%= form.text_field :stockprice, class: "form-control #{'is-invalid' if invalid}" %>
+    <%= form.number_field :stockprice, class: "form-control #{'is-invalid' if invalid}" %>
     <%= check_valid(@stock,:stockprice,invalid) %>
   </div>
 

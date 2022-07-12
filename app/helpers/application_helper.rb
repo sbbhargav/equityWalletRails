@@ -1,10 +1,13 @@
 module ApplicationHelper
 
   def back_link(path)
-    link_to 'back', path, class: 'btn btn-primary'
+    link_to 'back', path, class: 'btn btn-secondary'
   end
   def delete_link(path,style_class)
-    button_to 'delete', path, method: :delete, class: style_class
+    link_to 'delete', path,data: {
+      turbo_method: :delete,
+      turbo_confirm: "Are you sure?"
+    }, class: style_class
   end
 
   def show_link(path,style_class)
@@ -24,16 +27,15 @@ module ApplicationHelper
   end
 
   def login_helper(style)
-    if logged_in?
-      (link_to "Log Out", logout_path, 'data-turbo-method': :delete, class: style) + 
-      (link_to 'dashboard', dashboard_path, class: style) +
-      (link_to 'stocks summary', summary_path, class: style) +
-      (link_to 'Amount summary', amount_path, class: style) +
-      (link_to 'Total  stocks', total_stocks_path, class: style) +
-      (link_to 'Total  Amount', total_amount_path, class: style)
+    if logged_in? 
+      (link_to 'dashboard', dashboard_path, class: "#{style} header-space") +
+      (link_to 'stocks summary', summary_path, class: "#{style} header-space") +
+      (link_to 'Amount summary', amount_path, class: "#{style} header-space") +
+      (link_to 'Total  stocks', total_stocks_path, class: "#{style} header-space") +
+      (link_to 'Total  Amount', total_amount_path, class: "#{style} header-space")
     else
-      (link_to 'Register', sign_up_path, class: style) +
-      (link_to 'Login', login_path, class: style) 
+      (link_to 'Register', sign_up_path, class: "#{style} header-space") +
+      (link_to 'Login', login_path, class: "#{style} header-space") 
     end
 
   end
@@ -43,5 +45,6 @@ module ApplicationHelper
       content_tag(:div,current_user.username)
     end
   end
+
 
 end

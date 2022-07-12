@@ -5,7 +5,7 @@
 	<% invalid = check_errors(@transaction,:no_of_stocks) %>
 	<div class="form-group">
 		<%= form.label :no_of_stocks %>
-		<%= form.text_field :no_of_stocks, class: "form-control #{'is-invalid' if invalid}" %>
+		<%= form.number_field :no_of_stocks, class: "form-control #{'is-invalid' if invalid}" %>
 		<%= check_valid(@transaction,:no_of_stocks,invalid) %>
 	</div>
 
